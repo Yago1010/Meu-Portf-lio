@@ -1,0 +1,52 @@
+---
+type Props = {
+	github?: string;
+	linkedin?: string;
+	instagram?: string;
+};
+
+const { github = '#', linkedin = '#', instagram = '#' } = Astro.props;
+---
+
+<div class="social-icon-row">
+	<a href={github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon">
+		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.21.68-.48v-1.69c-2.78.61-3.37-1.18-3.37-1.18-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.61.07-.61 1 .07 1.53 1.02 1.53 1.02.88 1.5 2.3 1.06 2.86.8.09-.64.35-1.06.63-1.3-2.22-.25-4.55-1.1-4.55-4.92 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03A9.5 9.5 0 0 1 12 6.8c.85 0 1.7.11 2.5.34 1.9-1.3 2.74-1.03 2.74-1.03.55 1.38.2 2.41.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.83-2.33 4.67-4.56 4.92.36.31.69.92.69 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+	</a>
+	<a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon">
+		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12ZM5.56 9.9h2.77V19H5.56V9.9Zm4.37 0h2.66v1.24h.04c.37-.7 1.28-1.43 2.63-1.43 2.81 0 3.33 1.85 3.33 4.25V19h-2.77v-4.48c0-1.06-.02-2.43-1.48-2.43-1.48 0-1.71 1.16-1.71 2.35V19H9.93V9.9Z"/></svg>
+	</a>
+	<a href={instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+		<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9Zm9.7 1.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"/></svg>
+	</a>
+</div>
+
+<style>
+	.social-icon-row {
+		display: flex;
+		gap: 0.6rem;
+		margin-top: 1.2rem;
+	}
+	.social-icon {
+		width: 2.35rem;
+		height: 2.35rem;
+		display: inline-grid;
+		place-items: center;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		transition: background 0.25s ease, border-color 0.25s ease;
+	}
+	.social-icon svg {
+		width: 1.1rem;
+		height: 1.1rem;
+		fill: var(--accent);
+		transition: fill 0.25s ease;
+	}
+	.social-icon:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.social-icon:hover svg {
+		fill: #08121f;
+	}
+</style>

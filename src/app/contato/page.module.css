@@ -1,0 +1,23 @@
+.contactPage {
+	padding: 2rem 0;
+	max-width: 40rem;
+}
+
+.contactPage p {
+	color: var(--muted);
+	margin: 0 0 1.5rem;
+}
+
+.contactPage ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+}
+
+.contactPage a {
+	font-weight: 600;
+	font-size: 1.05rem;
+}

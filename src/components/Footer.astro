@@ -1,0 +1,53 @@
+---
+import site from '../data/site.json';
+import type { SiteData } from '../types/content';
+
+const data = site as SiteData;
+const year = new Date().getFullYear();
+---
+
+<footer class="footer-shell">
+	<div class="footer-container">
+		<p>© {year} {data.profile.name}. Engenharia de software para performance, escala e confiabilidade.</p>
+		<div class="footer-links">
+			{data.contact.linkedin && <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>}
+			{data.contact.github && <a href={data.contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>}
+			<a href={`mailto:${data.contact.email}`}>E-mail</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer-shell {
+		border-top: 1px solid var(--border);
+		margin-top: 5rem;
+	}
+	.footer-container {
+		max-width: var(--max);
+		margin: 0 auto;
+		padding: 1.4rem 1.5rem 2.4rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.8rem;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+	.footer-container p {
+		margin: 0;
+	}
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.7rem;
+	}
+	.footer-links a {
+		font-weight: 700;
+	}
+	@media (max-width: 760px) {
+		.footer-container {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+	}
+</style>

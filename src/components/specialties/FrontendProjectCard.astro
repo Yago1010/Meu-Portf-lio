@@ -1,0 +1,87 @@
+---
+import { withBase } from '../../lib/paths';
+import type { Project } from '../../types/content';
+
+type Props = {
+	project: Project;
+};
+
+const { project } = Astro.props as Props;
+const imagePath = project.cover?.image
+	? `${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`
+	: null;
+---
+
+<article class="frontend-card card-hover-lift">
+	<div class="header-row">
+		<p>{project.year}</p>
+		<span>{project.category}</span>
+	</div>
+	{imagePath ? <img src={imagePath} alt={project.title} class="project-image" loading="lazy" width={640} height={360} /> : null}
+	<h3><a href={withBase(`projetos/${project.slug}`)}>{project.title}</a></h3>
+	<p class="summary">{project.summary}</p>
+	<div class="tags">
+		{project.tags.slice(0, 4).map((tag) => <span>{tag}</span>)}
+	</div>
+</article>
+
+<style>
+	.frontend-card {
+		border: 1px solid var(--border);
+		background: linear-gradient(180deg, rgba(10, 19, 34, 0.96), rgba(8, 15, 28, 0.96));
+		border-radius: 12px;
+		padding: 1rem;
+	}
+	.project-image {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		border-radius: 8px;
+		border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border));
+		margin-top: 0.7rem;
+	}
+	.header-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.8rem;
+	}
+	.header-row p {
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.8rem;
+	}
+	.header-row span {
+		font-size: 0.78rem;
+		color: var(--accent);
+		font-weight: 700;
+		padding: 0.2rem 0.55rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+		border-radius: 999px;
+	}
+	.frontend-card h3 {
+		margin: 0.8rem 0 0.3rem;
+	}
+	.frontend-card h3 a {
+		text-decoration: none;
+		color: var(--text);
+	}
+	.summary {
+		color: var(--muted);
+		margin: 0;
+	}
+	.tags {
+		display: flex;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+		margin-top: 0.85rem;
+	}
+	.tags span {
+		padding: 0.22rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		font-size: 0.76rem;
+		color: #cfe0f8;
+		background: rgba(9, 18, 32, 0.7);
+	}
+</style>

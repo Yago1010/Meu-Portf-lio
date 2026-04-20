@@ -1,0 +1,179 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/paths';
+import projects from '../../data/projects.json';
+import type { Project } from '../../types/content';
+
+const list = ([...projects] as Project[]).sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+---
+
+<BaseLayout
+	title="Archive"
+	description="Arquivo completo de projetos com filtros por especialidade e tecnologia."
+>
+	<section class="archive-page">
+		<p class="eyebrow">Portfólio</p>
+		<h1>Archive</h1>
+		<p class="archive-lead">
+			Lista completa de projetos no estilo archive, com navegação para detalhes dentro do seu site.
+		</p>
+		<div class="archive-filters">
+			<button type="button" data-filter="all" class="active">Todos</button>
+			<button type="button" data-filter="Mobile">Mobile</button>
+			<button type="button" data-filter="Web">Web</button>
+			<button type="button" data-filter="Frontend">Frontend</button>
+		</div>
+		<div class="archive-table-wrap">
+			<table class="archive-table">
+				<thead>
+					<tr>
+						<th>Ano</th>
+						<th>Projeto</th>
+						<th>Especialidade</th>
+						<th class="hide-mobile">Stack</th>
+						<th>Links</th>
+					</tr>
+				</thead>
+				<tbody>
+					{list.map((project) => (
+						<tr data-category={project.category} data-specialty={project.category === 'Mobile' ? 'Mobile' : 'Frontend'}>
+							<td>{project.year}</td>
+							<td>
+								<a href={withBase(`projetos/${project.slug}`)}>{project.title}</a>
+							</td>
+							<td>{project.category === 'Mobile' ? 'Mobile' : 'Frontend'}</td>
+							<td class="hide-mobile">
+								<div class="tag-row">
+									{project.tags.slice(0, 4).map((tag) => <span>{tag}</span>)}
+								</div>
+							</td>
+							<td class="links-cell">
+								<a href={withBase(`projetos/${project.slug}`)}>Detalhes</a>
+								{project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>}
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<script is:inline>
+		const filters = document.querySelectorAll('.archive-filters button');
+		const rows = document.querySelectorAll('.archive-table tbody tr');
+		filters.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const filter = btn.getAttribute('data-filter') || 'all';
+				filters.forEach((b) => b.classList.remove('active'));
+				btn.classList.add('active');
+				rows.forEach((row) => {
+					const category = row.getAttribute('data-category');
+					const specialty = row.getAttribute('data-specialty');
+					const show = filter === 'all' || category === filter || specialty === filter;
+					row.classList.toggle('is-hidden', !show);
+				});
+			});
+		});
+	</script>
+</BaseLayout>
+
+<style>
+	.archive-page {
+		padding: 2.2rem 0 0.8rem;
+	}
+	.eyebrow {
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin: 0;
+	}
+	h1 {
+		margin: 0.45rem 0 0.7rem;
+		font-size: clamp(2rem, 5vw, 2.8rem);
+	}
+	.archive-lead {
+		color: var(--muted);
+		max-width: 58ch;
+		margin: 0 0 1.2rem;
+	}
+	.archive-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1.1rem;
+	}
+	.archive-filters button {
+		border: 1px solid var(--border);
+		background: var(--surface);
+		color: var(--muted);
+		padding: 0.45rem 0.8rem;
+		border-radius: 999px;
+		cursor: pointer;
+		font-weight: 700;
+	}
+	.archive-filters button.active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #111111;
+	}
+	.archive-table-wrap {
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: auto;
+		background: var(--surface);
+	}
+	.archive-table {
+		width: 100%;
+		border-collapse: collapse;
+		min-width: 760px;
+	}
+	.archive-table th,
+	.archive-table td {
+		padding: 0.9rem;
+		border-bottom: 1px solid var(--border);
+		text-align: left;
+		vertical-align: top;
+	}
+	.archive-table th {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		color: var(--muted);
+	}
+	.archive-table tr:last-child td {
+		border-bottom: none;
+	}
+	.archive-table a {
+		text-decoration: none;
+	}
+	.tag-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+	.tag-row span {
+		padding: 0.22rem 0.5rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--surface-2);
+		font-size: 0.76rem;
+	}
+	.links-cell {
+		display: flex;
+		gap: 0.65rem;
+		flex-wrap: wrap;
+	}
+	.archive-table tr.is-hidden {
+		display: none;
+	}
+	@media (max-width: 760px) {
+		.hide-mobile {
+			display: none;
+		}
+		.archive-table {
+			min-width: 580px;
+		}
+	}
+</style>

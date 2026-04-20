@@ -1,0 +1,33 @@
+.page {
+	padding: 2rem 0;
+	max-width: 48rem;
+}
+
+.meta {
+	color: var(--muted);
+}
+
+.description {
+	font-size: 1.05rem;
+}
+
+.image {
+	width: 100%;
+	border-radius: 12px;
+	border: 1px solid var(--border);
+}
+
+.tags {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+}
+
+.tags span {
+	font-size: 0.85rem;
+	padding: 0.25rem 0.55rem;
+	border-radius: 999px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+}

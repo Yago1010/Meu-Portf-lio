@@ -1,0 +1,14 @@
+---
+import type { Service } from '../types/content';
+
+type Props = { service: Service };
+
+const { service } = Astro.props;
+---
+
+<article
+	style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.35rem;"
+>
+	<h3 style="margin: 0 0 0.5rem; font-size: 1.1rem;">{service.title}</h3>
+	<p style="margin: 0; color: var(--muted); font-size: 0.95rem;">{service.description}</p>
+</article>

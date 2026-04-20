@@ -1,0 +1,20 @@
+.scroll-reveal {
+	opacity: 0;
+	transform: translateY(24px);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.card-hover-lift {
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-hover-lift:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+	border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}

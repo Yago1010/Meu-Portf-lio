@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+import type { SiteData } from '../types/content';
+import PageIntro from '../components/ui/PageIntro.astro';
+import CareerRoleCard from '../components/about/CareerRoleCard.astro';
+
+const data = site as SiteData;
+const careerJourney = [
+	{
+		period: '2016 - 2017',
+		role: 'Desenvolvedor Web Júnior',
+		focus: 'Entrada na área com foco em interfaces, integrações e manutenção de produtos digitais.',
+		responsibilities: [
+			'Construção de páginas e módulos responsivos com foco em compatibilidade cross-browser.',
+			'Correções de bugs críticos e melhorias contínuas em frontends legados.',
+			'Integração de APIs REST e suporte em deploys e monitoração de produção.',
+		],
+	},
+	{
+		period: '2018 - 2019',
+		role: 'Desenvolvedor Full Stack',
+		focus: 'Evolução para entregas de ponta a ponta com backend, frontend e banco de dados.',
+		responsibilities: [
+			'Desenvolvimento de funcionalidades completas, da modelagem de dados ao frontend.',
+			'Implementação de autenticação, autorização e rotinas de observabilidade.',
+			'Otimizações de performance para reduzir tempo de resposta e custo de infraestrutura.',
+		],
+	},
+	{
+		period: '2020 - 2021',
+		role: 'Desenvolvedor Mobile',
+		focus: 'Criação de apps com experiência fluida, integrações de serviços e escalabilidade.',
+		responsibilities: [
+			'Implementação de aplicativos Android e multiplataforma com arquitetura modular.',
+			'Integração com Firebase, notificações push, mapas e pagamentos em aplicativos móveis.',
+			'Melhoria de estabilidade e performance com monitoramento de crashes e métricas.',
+		],
+	},
+	{
+		period: '2022 - 2023',
+		role: 'Engenheiro Frontend Sênior',
+		focus: 'Design system, componentização e padrões para escalar times e produtos.',
+		responsibilities: [
+			'Definição de bibliotecas de componentes reutilizáveis e padrões de acessibilidade.',
+			'Arquitetura de aplicações frontend com foco em manutenção e velocidade de entrega.',
+			'Mentoria técnica e revisão de código para elevar qualidade entre squads.',
+		],
+	},
+	{
+		period: '2024 - 2025',
+		role: 'Arquiteto de Soluções / Full Stack',
+		focus: 'Arquitetura orientada a negócio, integrações complexas e modernização de legados.',
+		responsibilities: [
+			'Desenho de arquiteturas escaláveis para produtos web, mobile e e-commerce.',
+			'Migração de sistemas legados para ambientes cloud com estratégia de rollout segura.',
+			'Criação de pipelines CI/CD para padronizar entrega contínua com governança técnica.',
+		],
+	},
+	{
+		period: '2025 - 2026',
+		role: 'Especialista em IA Aplicada',
+		focus: 'Implementação de IA moderna em aplicações com impacto direto em produtividade e receita.',
+		responsibilities: [
+			'Integração de agentes e fluxos inteligentes com LLMs em produtos de produção.',
+			'Automação de processos com orquestração de workflows para reduzir custo operacional.',
+			'Criação de experiências de IA seguras, observáveis e orientadas a resultado de negócio.',
+		],
+	},
+];
+---
+
+<BaseLayout title="Sobre" description={data.about.intro}>
+	<section class="about-intro">
+		<PageIntro eyebrow="Jornada Profissional" title="Sobre" description={data.profile.roleLabel} />
+		<p>{data.about.intro}</p>
+		<p>{data.about.description}</p>
+	</section>
+
+	<section class="career">
+		<h2>Cargos e responsabilidades (2016 - 2026)</h2>
+		<div class="career-grid">
+			{careerJourney.map((item) => (
+				<CareerRoleCard item={item} />
+			))}
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.about-intro {
+		padding: 1rem 0;
+	}
+	.about-intro p {
+		max-width: 66ch;
+		font-size: 1.03rem;
+		color: var(--muted);
+	}
+	.career {
+		padding: 1rem 0 2rem;
+	}
+	.career h2 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+	.career-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem;
+		margin-top: 1rem;
+	}
+	@media (max-width: 880px) {
+		.career-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

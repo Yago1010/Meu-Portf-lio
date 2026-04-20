@@ -1,0 +1,54 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[3]!./src/app/projetos/page.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.page_page__tDcox {
+	padding: 2rem 0;
+}
+
+.page_page__tDcox p {
+	color: var(--muted);
+}
+
+.page_grid__Fff0p {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-gap: 0.9rem;
+	gap: 0.9rem;
+}
+
+.page_card__kL8Pq {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background: var(--surface);
+	padding: 0.8rem;
+}
+
+.page_image__O5SUE {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	border-radius: 10px;
+	margin-bottom: 0.65rem;
+}
+
+.page_card__kL8Pq h2 {
+	font-size: 1.1rem;
+	margin: 0;
+}
+
+.page_card__kL8Pq p {
+	color: var(--muted);
+}
+
+@media (max-width: 900px) {
+	.page_grid__Fff0p {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 620px) {
+	.page_grid__Fff0p {
+		grid-template-columns: 1fr;
+	}
+}
+

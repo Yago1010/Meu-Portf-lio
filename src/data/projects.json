@@ -1,0 +1,294 @@
+[
+  {
+    "slug": "app-super-nagairi",
+    "title": "Aplicativo Nagairi",
+    "category": "Mobile",
+    "summary": "Aplicativo mobile orientado a serviços com arquitetura escalável e foco em estabilidade.",
+    "description": "Projeto mobile com base arquitetural para crescimento contínuo, integração com APIs e monitoramento de desempenho em produção.",
+    "tags": ["Flutter", "REST APIs", "Clean Architecture"],
+    "year": "2024",
+    "role": "Liderança técnica e desenvolvimento mobile",
+    "client": "Projeto privado",
+    "outcome": "Melhora de estabilidade e redução de falhas em fluxos críticos.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #f5f5f5 0%, #dcdcdc 100%)",
+      "logoText": "N"
+    },
+    "demoUrl": "https://nagarikapp.gov.np/",
+    "order": 1
+  },
+  {
+    "slug": "guru-da-ambicao",
+    "title": "Guru da Ambicao",
+    "category": "Mobile",
+    "summary": "Produto mobile com foco em engajamento e arquitetura orientada a evolucao.",
+    "description": "Aplicativo com integracoes de notificacao, telemetria e camada de dados preparada para alto volume de usuarios.",
+    "tags": ["Flutter", "Firebase", "Push Notifications"],
+    "year": "2023",
+    "role": "Desenvolvimento e evolucao de arquitetura",
+    "client": "Projeto privado",
+    "outcome": "Entrega de base tecnica para novas features sem regressao.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #111111 0%, #050505 100%)",
+      "logoText": "G"
+    },
+    "demoUrl": "https://tokma.ai/",
+    "order": 2
+  },
+  {
+    "slug": "social-app",
+    "title": "Social",
+    "category": "Mobile",
+    "summary": "Aplicacao social com foco em interacao em tempo real e experiencia fluida.",
+    "description": "Implementacao de modulos de feed, interacoes e comunicacao em tempo real com arquitetura modular.",
+    "tags": ["WebSockets", "Pusher", "Firebase"],
+    "year": "2023",
+    "role": "Engenharia mobile e integracoes realtime",
+    "client": "Projeto privado",
+    "outcome": "Experiencia de usuario mais dinamica e responsiva.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #f6f6f6 0%, #e5e5e5 100%)",
+      "logoText": "S"
+    },
+    "demoUrl": "https://tokma.ai/",
+    "order": 3
+  },
+  {
+    "slug": "ifood-clone",
+    "title": "Ifood",
+    "category": "Mobile",
+    "summary": "App de delivery com mapas, pedidos e notificacoes em tempo real.",
+    "description": "Fluxos de geolocalizacao, pagamento e acompanhamento de pedidos com foco em performance e baixa latencia.",
+    "tags": ["Google Maps", "Stripe", "Push Notifications"],
+    "year": "2022",
+    "role": "Arquitetura e desenvolvimento mobile",
+    "client": "Projeto autoral",
+    "outcome": "Estrutura pronta para escalar multiplos fluxos operacionais.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #ff2d2d 0%, #c41010 100%)",
+      "logoText": "if",
+      "image": "/projects/ifood.png"
+    },
+    "demoUrl": "https://tokma.ai/",
+    "order": 4
+  },
+  {
+    "slug": "previsao-do-tempo",
+    "title": "Aplicativo de Previsao do Tempo",
+    "category": "Mobile",
+    "summary": "Aplicativo com visualizacao de clima e cache inteligente para consulta rapida.",
+    "description": "Solucao mobile com consumo de APIs meteorologicas, armazenamento local e interface otimizada para uso diario.",
+    "tags": ["Flutter", "REST APIs", "Provider"],
+    "year": "2022",
+    "role": "Desenvolvimento e arquitetura",
+    "client": "Projeto autoral",
+    "outcome": "Melhora de tempo de resposta em consultas recorrentes.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #1f2937 0%, #0f172a 100%)",
+      "logoText": "WT",
+      "image": "/projects/weatherapp.png"
+    },
+    "demoUrl": "https://aakashrajbanshi.com.np/assets/projects/weatherapp.png",
+    "order": 5
+  },
+  {
+    "slug": "zona-estacionamento",
+    "title": "Zona de Estacionamento",
+    "category": "Web",
+    "summary": "Plataforma web para operacao e controle de estacionamento com foco em produtividade.",
+    "description": "Aplicacao para gestao operacional com dashboard, monitoramento e integracao de regras de negocio.",
+    "tags": ["Next.js", "Node.js", "AWS"],
+    "year": "2024",
+    "role": "Consultoria tecnica e arquitetura",
+    "client": "Projeto corporativo",
+    "outcome": "Otimização de fluxo operacional e previsibilidade de dados.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #2a2a2a 0%, #101010 100%)",
+      "logoText": "CZ"
+    },
+    "demoUrl": "https://fitness-zone-xi.vercel.app/",
+    "order": 6
+  },
+  {
+    "slug": "usuarios-github-search",
+    "title": "Usuarios do GitHub Pesquisar",
+    "category": "Web",
+    "summary": "Ferramenta web para pesquisa e visualizacao de perfis e repositorios.",
+    "description": "Aplicacao com consumo de APIs do GitHub, filtros de busca e foco em usabilidade para analise tecnica rapida.",
+    "tags": ["Next.js", "REST APIs", "TypeScript"],
+    "year": "2023",
+    "role": "Full Stack Engineer",
+    "client": "Projeto autoral",
+    "outcome": "Facilitou mapeamento de perfis e repositorios em processos tecnicos.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
+      "logoText": "GH"
+    },
+    "repoUrl": "https://github.com/Yago1010",
+    "demoUrl": "https://github.com/Yago1010",
+    "order": 7
+  },
+  {
+    "slug": "movie-app",
+    "title": "Aplicativo de Filmes",
+    "category": "Mobile",
+    "summary": "Catalogo mobile com descoberta de filmes e experiencia visual envolvente.",
+    "description": "Aplicativo com integracao de APIs de conteudo, filtros de pesquisa e interface otimizada para retencao.",
+    "tags": ["Flutter", "REST APIs", "Video Players"],
+    "year": "2022",
+    "role": "Desenvolvedor Mobile",
+    "client": "Projeto autoral",
+    "outcome": "Experiencia rica de consumo de conteudo em mobile.",
+    "featured": false,
+    "cover": {
+      "background": "linear-gradient(135deg, #141414 0%, #050505 100%)",
+      "logoText": "MV",
+      "image": "/projects/movieapp.png"
+    },
+    "demoUrl": "https://aakashrajbanshi.com.np/assets/projects/movieapp.png",
+    "order": 8
+  },
+  {
+    "slug": "ecommerce-fashion",
+    "title": "Comercio Eletronico",
+    "category": "E-commerce",
+    "summary": "Loja virtual com foco em performance, conversao e jornada de compra.",
+    "description": "Implementacao de e-commerce com checkout, pagamentos e estrutura preparada para crescimento.",
+    "tags": ["Next.js", "Node.js", "Stripe"],
+    "year": "2024",
+    "role": "Technical Consultant",
+    "client": "Projeto corporativo",
+    "outcome": "Melhoria de conversao e estabilidade em eventos de pico.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #f4f4f4 0%, #dadada 100%)",
+      "logoText": "EC"
+    },
+    "demoUrl": "https://aakashx58.github.io/Ecommerce_website/",
+    "order": 9
+  },
+  {
+    "slug": "tokma-platform",
+    "title": "Tokma",
+    "category": "Web",
+    "summary": "Plataforma de serviços locais com foco em experiência de usuário e escalabilidade.",
+    "description": "Aplicação web com proposta de centralizar serviços e melhorar a jornada de busca e contratação.",
+    "tags": ["Web", "UX", "Marketplace"],
+    "year": "2025",
+    "role": "Referência visual para portfólio",
+    "client": "Projeto público",
+    "outcome": "Composição da vitrine de projetos web.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #172338 0%, #0d1525 100%)",
+      "logoText": "TK"
+    },
+    "demoUrl": "https://tokma.ai/",
+    "order": 10
+  },
+  {
+    "slug": "netflix-clone",
+    "title": "Clone da Netflix",
+    "category": "Web",
+    "summary": "Interface de streaming com cards, navegação por categorias e layout responsivo.",
+    "description": "Projeto frontend inspirado em plataformas de streaming com foco em UI e organização de conteúdo.",
+    "tags": ["React", "UI", "Web"],
+    "year": "2024",
+    "role": "Referência visual para portfólio",
+    "client": "Projeto público",
+    "outcome": "Ampliação da galeria de projetos web.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #2d1414 0%, #1a0909 100%)",
+      "logoText": "NF"
+    },
+    "demoUrl": "https://netflix-clone-olive-chi.vercel.app/",
+    "order": 11
+  },
+  {
+    "slug": "movfix-template",
+    "title": "Movfix",
+    "category": "Web",
+    "summary": "Template de streaming com destaque para seções promocionais e navegação limpa.",
+    "description": "Projeto de interface com foco em apresentação visual de catálogo e conteúdo multimídia.",
+    "tags": ["HTML", "Template", "UI"],
+    "year": "2024",
+    "role": "Referência visual para portfólio",
+    "client": "Projeto público",
+    "outcome": "Mais variação visual na seção web.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #25364b 0%, #101926 100%)",
+      "logoText": "MF"
+    },
+    "demoUrl": "https://movfix-bay.vercel.app/",
+    "order": 12
+  },
+  {
+    "slug": "houseman-ui",
+    "title": "Houseman",
+    "category": "UI/UX",
+    "summary": "Interface mobile moderna com foco em clareza visual e usabilidade.",
+    "description": "Estudo visual para aplicação mobile com grid tipográfico e componentes consistentes.",
+    "tags": ["UI/UX", "Mobile UI", "Design System"],
+    "year": "2024",
+    "role": "UI/UX",
+    "client": "Projeto visual",
+    "outcome": "Composição da galeria de UI/UX.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #3f55ff 0%, #2534b6 100%)",
+      "logoText": "HM",
+      "image": "/projects/houseman.png"
+    },
+    "demoUrl": "https://aakashrajbanshi.com.np/assets/projects/houseman.png",
+    "order": 13
+  },
+  {
+    "slug": "merodate-app",
+    "title": "MeroDate",
+    "category": "Mobile",
+    "summary": "App com identidade visual clean e foco em onboarding simples.",
+    "description": "Projeto mobile com tela de marca e proposta de experiência intuitiva.",
+    "tags": ["Flutter", "Mobile", "Branding"],
+    "year": "2024",
+    "role": "Desenvolvimento mobile",
+    "client": "Projeto visual",
+    "outcome": "Ampliação da vitrine mobile.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #f7f7ff 0%, #ececff 100%)",
+      "logoText": "MD",
+      "image": "/projects/merodate.png"
+    },
+    "demoUrl": "https://aakashrajbanshi.com.np/assets/projects/merodate.png",
+    "order": 14
+  },
+  {
+    "slug": "music-player-mobile",
+    "title": "Aplicativo de Musica",
+    "category": "Mobile",
+    "summary": "Player mobile com foco em biblioteca, favoritos e experiência fluida.",
+    "description": "Interface mobile orientada a consumo de áudio e navegação simples entre listas.",
+    "tags": ["Flutter", "Audio", "Mobile"],
+    "year": "2024",
+    "role": "Desenvolvimento mobile",
+    "client": "Projeto visual",
+    "outcome": "Complemento da seção de apps mobile.",
+    "featured": true,
+    "cover": {
+      "background": "linear-gradient(135deg, #1b2233 0%, #0c111a 100%)",
+      "logoText": "MU",
+      "image": "/projects/music.png"
+    },
+    "demoUrl": "https://aakashrajbanshi.com.np/assets/projects/music.png",
+    "order": 15
+  }
+]

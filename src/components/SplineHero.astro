@@ -1,0 +1,31 @@
+---
+// SplineHero.astro
+// Simple Spline hero using an iframe with overlay text.
+// Props: sceneUrl (string), title, subtitle
+const { sceneUrl = 'https://prod.spline.design/placeholder/scene.splinecode', title = '', subtitle = '' } = Astro.props;
+---
+
+<style>
+@import '../styles/spline.css';
+</style>
+
+<section class="spline-hero">
+	<div class="spline-canvas">
+		<iframe
+			src={sceneUrl}
+			title="Spline Scene"
+			frameborder="0"
+			loading="lazy"
+			allow="fullscreen;" 
+		></iframe>
+	</div>
+	<div class="spline-overlay">
+		{title && <p class="eyebrow">{Astro.props.eyebrow}</p>}
+		{title && <h1 class="hero-title">{title}</h1>}
+		{subtitle && <p class="hero-sub">{subtitle}</p>}
+		<div class="hero-ctas">
+			<a class="btn primary" href="/contato">Entrar em contato</a>
+			<a class="btn ghost" href="/projetos">Ver projetos</a>
+		</div>
+	</div>
+</section>

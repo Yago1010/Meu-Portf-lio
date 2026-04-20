@@ -1,0 +1,786 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+import projects from '../data/projects.json';
+import HeroThreeScene from '../components/HeroThreeScene.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { withBase } from '../lib/paths';
+import type { Project, SiteData } from '../types/content';
+
+const data = site as SiteData;
+const list = projects as Project[];
+const featured = [...list].filter((p) => p.featured).sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+const topProjects = featured.slice(0, 15);
+const categories = ['Todos', ...new Set(topProjects.map((project) => project.category))];
+const mobileProjects = [...list].filter((project) => project.category === 'Mobile').slice(0, 4);
+const allStacks = [...new Set([...data.skills.groups.flatMap((group) => group.items), ...list.flatMap((project) => project.tags)])];
+const mobileSpecialties = [
+	{
+		icon: '🔥',
+		title: 'Firebase e serviços em nuvem',
+		description:
+			'Integrações incluindo autenticação, Firestore, banco em tempo real, armazenamento e mensagens para apps móveis escaláveis.',
+	},
+	{
+		icon: '💰',
+		title: 'Integração de gateway de pagamento',
+		description:
+			'Implementação de pagamentos com Stripe, Apple Pay, Google Pay e compras in-app com fluxos seguros de validação.',
+	},
+	{
+		icon: '🎥',
+		title: 'Processamento e transmissão de vídeo',
+		description:
+			'Soluções com FFmpeg, players customizados, integração com Agora e comunicação de baixa latência.',
+	},
+	{
+		icon: '🧠',
+		title: 'Integrações de IA e TensorFlow',
+		description:
+			'Features com aprendizado de máquina, reconhecimento e modelos otimizados para dispositivos móveis.',
+	},
+	{
+		icon: '🌐',
+		title: 'Comunicação em tempo real',
+		description:
+			'Arquiteturas com WebSockets e Pusher para chat, localização ao vivo, notificações e colaboração.',
+	},
+	{
+		icon: '🗺️',
+		title: 'Serviços de localização e Google Maps',
+		description:
+			'Experiência com navegação, desenho de rotas, rastreamento em tempo real e integrações baseadas em localização.',
+	},
+];
+---
+
+<BaseLayout title="Início" description={data.meta.description}>
+	<section class="home-hero section">
+		<div class="hero-copy">
+			<p class="eyebrow">{data.hero.eyebrow}</p>
+			<h1>{data.hero.title}</h1>
+			<p class="lead">{data.hero.subtitle}</p>
+			<div class="hero-highlights">
+				{data.hero.highlights.map((item) => <span class="highlight-pill">{item}</span>)}
+			</div>
+			<div class="hero-actions">
+				<a class="btn btn-primary" href="#projetos">{data.hero.primaryCta}</a>
+				<a class="btn btn-ghost" href={withBase('contato')}>{data.hero.secondaryCta}</a>
+			</div>
+			<SocialLinks github={data.contact.github} linkedin={data.contact.linkedin} instagram={data.contact.instagram} />
+		</div>
+		<HeroThreeScene />
+	</section>
+
+	<section class="section scroll-reveal">
+		<div class="section-head">
+			<p class="eyebrow">Sobre</p>
+			<h2>{data.about.title}</h2>
+		</div>
+		<div class="about-layout">
+			<div>
+				<p class="lead">{data.about.intro}</p>
+				<p>{data.about.description}</p>
+			</div>
+			<div class="stats-grid">
+				{data.about.stats.map((stat) => (
+					<article class="stat-card">
+						<div class="stat-value">{stat.value}</div>
+						<div class="stat-label">{stat.label}</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section scroll-reveal trajectory-section">
+		<div class="section-head">
+			<p class="eyebrow">Experiência</p>
+			<h2>{data.experience.title}</h2>
+		</div>
+		<div class="timeline-zigzag">
+			{data.experience.items.map((item, index) => (
+				<article class={`timeline-item ${index % 2 === 1 ? 'right' : 'left'}`}>
+					<div class="timeline-dot" aria-hidden="true">
+						<svg viewBox="0 0 24 24"><path d="M12 12a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm0 2.1c-4.28 0-7.8 2.18-7.8 4.86 0 .24.2.44.45.44h14.7c.25 0 .45-.2.45-.44 0-2.68-3.52-4.86-7.8-4.86Z"/></svg>
+					</div>
+					<span class="timeline-period">{item.periodLabel ?? item.period}</span>
+					<h3>{item.role}</h3>
+					<p class="timeline-company">{item.company}</p>
+					<ul class="responsibility-list">
+						{(item.responsibilities?.length ? item.responsibilities : [item.description]).map((responsibility) => (
+							<li>{responsibility}</li>
+						))}
+					</ul>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section scroll-reveal">
+		<div class="section-head">
+			<p class="eyebrow">Especialidades</p>
+			<h2>{data.skills.title}</h2>
+		</div>
+		<div class="skills-grid">
+			{data.skills.groups.map((group) => (
+				<article class="skill-card">
+					<h3>{group.title}</h3>
+					<div class="stack-row">
+						{group.items.map((item) => <span class="tag-pill">{item}</span>)}
+					</div>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section scroll-reveal" id="projetos">
+		<div class="section-head">
+			<p class="eyebrow">Projetos</p>
+			<h2>Portfólio em destaque</h2>
+			<p class="section-subtitle">Visualização rápida na home, com navegação para o archive completo dentro do seu site.</p>
+		</div>
+		<div class="project-filter">
+			{categories.map((category, index) => (
+				<button type="button" class={`filter-btn ${index === 0 ? 'active' : ''}`} data-filter={category}>
+					{category}
+				</button>
+			))}
+		</div>
+		<div class="portfolio-grid project-showcase" data-grid>
+			{topProjects.map((project) => (
+				<article class="portfolio-card" data-category={project.category}>
+					{
+						project.cover?.image ? (
+							<img
+								src={`${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`}
+								alt={project.title}
+								loading="lazy"
+								width={640}
+								height={360}
+								class="portfolio-media-image"
+							/>
+						) : (
+							<div class="portfolio-media" style={`background: ${project.cover?.background ?? 'linear-gradient(135deg, #2b2b2b, #141414)'};`}>
+								<span>{project.cover?.logoText ?? project.title.slice(0, 2)}</span>
+							</div>
+						)
+					}
+					<div class="portfolio-body">
+						<p class="portfolio-category">{project.category}</p>
+						<h3>{project.title}</h3>
+						<p>{project.summary}</p>
+						<div class="stack-row compact">
+							{project.tags.slice(0, 3).map((tag) => <span class="tag-pill">{tag}</span>)}
+						</div>
+						<div class="card-links">
+							<a href={withBase(`projetos/${project.slug}`)}>Ver imagem</a>
+							{project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>}
+							{project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">Demo</a>}
+						</div>
+					</div>
+				</article>
+			))}
+		</div>
+		<div class="section-footer">
+			<a href={withBase('archive')} class="btn btn-ghost">Abrir archive completo</a>
+		</div>
+	</section>
+
+	<section class="section scroll-reveal tech-stack-zone">
+		<div class="section-head center">
+			<p class="eyebrow">Inventário</p>
+			<h2>A pilha de tecnologia</h2>
+		</div>
+		<p class="section-subtitle center-subtitle">Cards correndo em trajetórias opostas, incluindo toda a stack mapeada no portfólio e especialidades.</p>
+		<div class="stack-marquee" aria-label="Stack completa">
+			<div class="stack-track">
+				{allStacks.concat(allStacks).map((item) => (
+					<span class="stack-badge">{item}</span>
+				))}
+			</div>
+			<div class="stack-track reverse">
+				{allStacks.concat(allStacks).map((item) => (
+					<span class="stack-badge">{item}</span>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="section scroll-reveal mobile-portfolio">
+		<div class="section-head">
+			<p class="eyebrow">Portfólio mobile</p>
+			<h2>Projetos mobile</h2>
+		</div>
+		<div class="mobile-portfolio-grid">
+			{mobileProjects.map((project) => (
+				<a class="mobile-portfolio-card" href={withBase(`projetos/${project.slug}`)}>
+					{
+						project.cover?.image ? (
+							<img
+								src={`${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`}
+								alt={project.title}
+								class="mobile-portfolio-image"
+								loading="lazy"
+								width={640}
+								height={360}
+							/>
+						) : (
+							<div class="mobile-portfolio-media" style={`background: ${project.cover?.background ?? 'linear-gradient(135deg, #252525, #080808)'}`}></div>
+						)
+					}
+					<h3>{project.title}</h3>
+					<p>{project.summary}</p>
+				</a>
+			))}
+		</div>
+		<div class="section-footer">
+			<a href={withBase('especialidades/mobile')} class="btn btn-primary">Ver rota mobile completa</a>
+			<a href={withBase('especialidades/frontend')} class="btn btn-ghost">Ver rota frontend completa</a>
+		</div>
+	</section>
+
+	<section class="section scroll-reveal mobile-capabilities">
+		<div class="section-head">
+			<p class="eyebrow">Conjunto de habilidades</p>
+			<h2>Habilidades e conhecimentos técnicos mobile</h2>
+			<p class="section-subtitle">
+				Especializado no desenvolvimento de aplicações mobile com foco em arquitetura escalável, integrações
+				complexas e alta performance em produção.
+			</p>
+		</div>
+		<div class="mobile-grid">
+			{mobileSpecialties.map((item) => (
+				<article class="mobile-card">
+					<div class="mobile-icon">{item.icon}</div>
+					<h3>{item.title}</h3>
+					<p>{item.description}</p>
+				</article>
+			))}
+		</div>
+	</section>
+
+	<section class="section scroll-reveal contact-panel">
+		<div>
+			<p class="eyebrow">Contato</p>
+			<h2>Vamos construir algo relevante?</h2>
+			<p>{data.profile.availability}</p>
+			<p>
+				<a href={`mailto:${data.contact.email}`}>{data.contact.email}</a> · {data.contact.location}
+			</p>
+		</div>
+		<div class="hero-actions">
+			<a class="btn btn-primary" href={data.contact.linkedin ?? '#'} target="_blank" rel="noopener noreferrer">{data.contact.linkedinLabel}</a>
+			<a class="btn btn-ghost" href={data.contact.github ?? '#'} target="_blank" rel="noopener noreferrer">GitHub</a>
+		</div>
+	</section>
+
+	<script is:inline>
+		const filterButtons = document.querySelectorAll('.filter-btn');
+		const cards = document.querySelectorAll('.portfolio-card');
+
+		filterButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const selected = button.getAttribute('data-filter') || 'Todos';
+				filterButtons.forEach((candidate) => candidate.classList.remove('active'));
+				button.classList.add('active');
+
+				cards.forEach((card) => {
+					const category = card.getAttribute('data-category');
+					const visible = selected === 'Todos' || category === selected;
+					card.classList.toggle('hidden', !visible);
+				});
+			});
+		});
+	</script>
+</BaseLayout>
+
+<style>
+	.section {
+		margin-top: 6rem;
+	}
+	.home-hero {
+		display: grid;
+		grid-template-columns: 1.05fr 0.95fr;
+		gap: 2rem;
+		align-items: center;
+		margin-top: 3rem;
+	}
+	.eyebrow {
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+	h1 {
+		font-size: clamp(2.3rem, 5vw, 3.7rem);
+		margin: 0.6rem 0 1rem;
+		line-height: 1.15;
+	}
+	.lead {
+		font-size: 1.05rem;
+		color: var(--muted);
+		max-width: 60ch;
+	}
+	.hero-highlights {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem;
+		margin-top: 1rem;
+	}
+	.hero-actions {
+		display: flex;
+		gap: 0.8rem;
+		flex-wrap: wrap;
+		margin-top: 1.5rem;
+	}
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.7rem 1rem;
+		border-radius: 999px;
+		border: 1px solid transparent;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.btn-primary {
+		background: var(--accent);
+		color: #111111;
+	}
+	.btn-ghost {
+		background: transparent;
+		color: var(--text);
+		border-color: var(--border);
+	}
+	.section-head {
+		margin-bottom: 1.3rem;
+	}
+	.section-subtitle {
+		color: var(--muted);
+		max-width: 60ch;
+		margin-top: 0.2rem;
+	}
+	.center-subtitle {
+		margin-inline: auto;
+		text-align: center;
+	}
+	.about-layout {
+		display: grid;
+		grid-template-columns: 1.15fr 0.85fr;
+		gap: 1.5rem;
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.8rem;
+	}
+	.stat-card {
+		border: 1px solid var(--border);
+		background: var(--surface);
+		border-radius: var(--radius);
+		padding: 1rem;
+	}
+	.stat-value {
+		font-size: 1.7rem;
+		font-weight: 800;
+	}
+	.stat-label {
+		font-size: 0.72rem;
+		color: var(--muted);
+		font-weight: 700;
+		letter-spacing: 0.05em;
+	}
+	.trajectory-section {
+		overflow: hidden;
+	}
+	.timeline-zigzag {
+		position: relative;
+		display: grid;
+		gap: 1.6rem;
+	}
+	.timeline-zigzag::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		width: 2px;
+		background: linear-gradient(180deg, rgba(78, 161, 255, 0.08), rgba(78, 161, 255, 0.5), rgba(78, 161, 255, 0.08));
+		opacity: 0.9;
+	}
+	.timeline-item,
+	.skill-card,
+	.contact-panel {
+		border: 1px solid var(--border);
+		background: var(--surface);
+		border-radius: var(--radius);
+		padding: 1.2rem;
+	}
+	.timeline-item {
+		width: calc(50% - 1.3rem);
+		position: relative;
+		background: color-mix(in srgb, var(--surface) 90%, #000000 10%);
+		border-color: color-mix(in srgb, var(--accent) 35%, var(--border) 65%);
+		border-radius: 18px;
+		box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent) inset;
+	}
+	.timeline-item.left {
+		margin-right: auto;
+	}
+	.timeline-item.right {
+		margin-left: auto;
+	}
+	.timeline-period {
+		display: inline-block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		color: var(--muted);
+		padding: 0.25rem 0.65rem;
+		border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border) 70%);
+		background: color-mix(in srgb, var(--surface) 88%, var(--accent) 12%);
+		border-radius: 999px;
+	}
+	.timeline-dot {
+		position: absolute;
+		top: -0.72rem;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--surface) 88%, #000000 12%);
+		border: 2px solid var(--accent);
+		box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 50%, transparent);
+		display: grid;
+		place-items: center;
+	}
+	.timeline-dot svg {
+		width: 0.62rem;
+		height: 0.62rem;
+		fill: var(--accent);
+	}
+	.timeline-item.left .timeline-dot {
+		right: -1.85rem;
+	}
+	.timeline-item.right .timeline-dot {
+		left: -1.85rem;
+	}
+	.timeline-item h3,
+	.skill-card h3,
+	.portfolio-card h3 {
+		margin: 0.45rem 0 0.35rem;
+	}
+	.timeline-company {
+		margin: 0;
+		font-weight: 700;
+		color: var(--accent);
+	}
+	.responsibility-list {
+		margin: 0.9rem 0 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 0.62rem;
+	}
+	.responsibility-list li {
+		position: relative;
+		padding-left: 1rem;
+		color: var(--text);
+	}
+	.responsibility-list li::before {
+		content: '›';
+		position: absolute;
+		left: 0;
+		color: var(--accent);
+		font-weight: 800;
+	}
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.stack-row {
+		display: flex;
+		gap: 0.5rem;
+		flex-wrap: wrap;
+		margin-top: 0.9rem;
+	}
+	.stack-row.compact {
+		margin-top: 0.6rem;
+	}
+	.tag-pill,
+	.highlight-pill {
+		padding: 0.3rem 0.6rem;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--surface-2);
+		font-size: 0.78rem;
+		font-weight: 600;
+	}
+	.project-filter {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+	.filter-btn {
+		border: 1px solid var(--border);
+		background: transparent;
+		color: var(--muted);
+		padding: 0.45rem 0.75rem;
+		border-radius: 999px;
+		cursor: pointer;
+		font-weight: 700;
+	}
+	.filter-btn.active {
+		background: var(--accent);
+		color: #111111;
+		border-color: var(--accent);
+	}
+	.portfolio-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 0.9rem;
+	}
+	.portfolio-card {
+		border: 1px solid var(--border);
+		background: var(--surface);
+		border-radius: var(--radius);
+		overflow: hidden;
+		transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+	}
+	.portfolio-card:hover {
+		transform: translateY(-4px);
+		border-color: var(--accent);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+	}
+	.portfolio-card.hidden {
+		display: none;
+	}
+	.portfolio-media {
+		height: 108px;
+		display: grid;
+		place-items: center;
+	}
+	.portfolio-media-image {
+		width: 100%;
+		height: 108px;
+		object-fit: cover;
+		display: block;
+		border-bottom: 1px solid var(--border);
+	}
+	.portfolio-media span {
+		font-size: 1.4rem;
+		font-weight: 900;
+		letter-spacing: 0.02em;
+		color: #ffffff;
+	}
+	.portfolio-body {
+		padding: 0.85rem;
+	}
+	.portfolio-category {
+		margin: 0;
+		font-size: 0.72rem;
+		color: var(--muted);
+		text-transform: uppercase;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+	}
+	.portfolio-body p {
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+	.card-links {
+		display: flex;
+		gap: 0.75rem;
+		margin-top: 0.5rem;
+		font-size: 0.9rem;
+	}
+	.section-footer {
+		margin-top: 1.2rem;
+		display: flex;
+		justify-content: center;
+		gap: 0.7rem;
+		flex-wrap: wrap;
+	}
+	.tech-stack-zone {
+		padding: 2rem;
+		border-radius: 18px;
+		background: radial-gradient(circle at top, rgba(38, 102, 255, 0.28), rgba(5, 11, 32, 0.95) 55%);
+		border: 1px solid rgba(58, 114, 255, 0.4);
+	}
+	.section-head.center {
+		text-align: center;
+	}
+	.stack-marquee {
+		display: grid;
+		gap: 0.7rem;
+		overflow: hidden;
+	}
+	.stack-track {
+		display: flex;
+		width: max-content;
+		gap: 0.6rem;
+		animation: track-left 38s linear infinite;
+	}
+	.stack-track.reverse {
+		animation: track-right 42s linear infinite;
+	}
+	.stack-badge {
+		padding: 0.7rem 0.8rem;
+		border-radius: 10px;
+		background: rgba(6, 20, 56, 0.85);
+		border: 1px solid rgba(83, 136, 255, 0.4);
+		font-weight: 700;
+		font-size: 0.8rem;
+		text-align: left;
+		color: #cfe0ff;
+		transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+		white-space: nowrap;
+	}
+	.stack-badge:hover {
+		transform: translateY(-3px);
+		background: #000000;
+		border-color: rgba(255, 111, 111, 0.6);
+	}
+	.mobile-portfolio-grid {
+		display: none;
+	}
+	.mobile-portfolio-card {
+		text-decoration: none;
+		color: inherit;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		border-radius: var(--radius);
+		padding: 0.9rem;
+	}
+	.mobile-portfolio-media {
+		height: 110px;
+		border-radius: 9px;
+		margin-bottom: 0.7rem;
+		border: 1px solid color-mix(in srgb, var(--border) 65%, #ffffff 35%);
+	}
+	.mobile-portfolio-image {
+		height: 110px;
+		width: 100%;
+		object-fit: cover;
+		border-radius: 9px;
+		margin-bottom: 0.7rem;
+		border: 1px solid color-mix(in srgb, var(--border) 65%, #ffffff 35%);
+		display: block;
+	}
+	.mobile-portfolio-card h3 {
+		margin: 0 0 0.35rem;
+	}
+	.mobile-portfolio-card p {
+		margin: 0;
+		color: var(--muted);
+	}
+	.mobile-capabilities {
+		padding: 2rem;
+		border-radius: 18px;
+		background: linear-gradient(180deg, rgba(1, 19, 45, 0.95), rgba(1, 11, 28, 0.97));
+		border: 1px solid rgba(64, 153, 255, 0.38);
+	}
+	.mobile-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.mobile-card {
+		background: rgba(2, 16, 39, 0.95);
+		border: 1px solid rgba(56, 143, 255, 0.2);
+		border-radius: 14px;
+		padding: 1.2rem;
+	}
+	.mobile-icon {
+		width: 2.8rem;
+		height: 2.8rem;
+		border-radius: 999px;
+		display: grid;
+		place-items: center;
+		background: rgba(41, 181, 255, 0.2);
+		border: 1px solid rgba(41, 181, 255, 0.6);
+		box-shadow: 0 0 20px rgba(41, 181, 255, 0.45);
+		font-size: 1.2rem;
+	}
+	.mobile-card h3 {
+		margin-top: 1rem;
+	}
+	.mobile-card p {
+		color: #b8cff5;
+	}
+	.contact-panel {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+	@media (max-width: 980px) {
+		.home-hero,
+		.about-layout,
+		.skills-grid,
+		.contact-panel {
+			grid-template-columns: 1fr;
+			display: grid;
+		}
+		.stats-grid {
+			grid-template-columns: 1fr;
+		}
+		.portfolio-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.mobile-grid {
+			grid-template-columns: 1fr;
+		}
+		.timeline-zigzag::before {
+			left: 0.5rem;
+		}
+		.timeline-item,
+		.timeline-item.left,
+		.timeline-item.right {
+			width: calc(100% - 1rem);
+			margin-left: 1rem;
+			margin-right: 0;
+		}
+		.timeline-item.left .timeline-dot,
+		.timeline-item.right .timeline-dot {
+			left: -1.25rem;
+			right: auto;
+		}
+	}
+	@media (max-width: 640px) {
+		.section {
+			margin-top: 4rem;
+		}
+		.portfolio-grid {
+			grid-template-columns: 1fr;
+		}
+		.mobile-portfolio-grid {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 0.8rem;
+		}
+	}
+	@media (max-width: 430px) {
+		.mobile-portfolio-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+	@keyframes track-left {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+	@keyframes track-right {
+		from {
+			transform: translateX(-50%);
+		}
+		to {
+			transform: translateX(0);
+		}
+	}
+</style>

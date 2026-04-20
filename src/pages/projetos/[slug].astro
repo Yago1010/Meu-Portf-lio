@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/paths';
+import projects from '../../data/projects.json';
+import type { Project } from '../../types/content';
+
+export function getStaticPaths() {
+	return (projects as Project[]).map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const project = (projects as Project[]).find((p) => p.slug === slug);
+if (!project) {
+	return Astro.redirect(withBase('projetos'));
+}
+---
+
+<BaseLayout title={project.title} description={project.summary}>
+	<article style="padding: 2rem 0; max-width: 48rem;">
+		<p style="margin: 0 0 0.5rem;">
+			<a href={withBase('projetos')} style="color: var(--muted); font-weight: 600;">← Projetos</a>
+		</p>
+		<h1 style="margin: 0 0 0.75rem;">{project.title}</h1>
+		<p style="color: var(--muted); margin: 0 0 0.4rem;">{project.category} · {project.year}</p>
+		<p style="color: var(--muted); margin: 0 0 1rem;">{project.role}{project.client ? ` — ${project.client}` : ''}</p>
+		<p style="font-size: 1.05rem; margin: 0 0 1.25rem;">{project.description}</p>
+
+		<div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+			{project.repoUrl && (
+				<a
+					href={project.repoUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					style="display: inline-block; padding: 0.5rem 0.9rem; background: var(--accent); color: #111111; border-radius: var(--radius); text-decoration: none; font-weight: 700;"
+				>
+					Abrir no GitHub
+				</a>
+			)}
+			{
+				project.demoUrl ? (
+					<a
+						href={project.demoUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						style="display: inline-block; padding: 0.5rem 0.9rem; border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; font-weight: 600; color: var(--text);"
+					>
+						Demo
+					</a>
+				) : null
+			}
+			{
+				project.caseStudyUrl ? (
+					<a
+						href={project.caseStudyUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						style="display: inline-block; padding: 0.5rem 0.9rem; border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; font-weight: 600; color: var(--text);"
+					>
+						Estudo de caso
+					</a>
+				) : null
+			}
+		</div>
+
+		{
+			project.cover ? (
+				project.cover.image ? (
+					<img
+						src={`${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`}
+						alt=""
+						width={960}
+						height={540}
+						style="width: 100%; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem;"
+					/>
+				) : (
+					<div style={`width: 100%; height: 220px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem; background: ${project.cover.background}; display: grid; place-items: center; color: #ffffff; font-size: 2rem; font-weight: 900;`}>
+						{project.cover.logoText}
+					</div>
+				)
+			) : null
+		}
+
+		{project.outcome && <p style="padding: 0.85rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);"><strong>Resultado:</strong> {project.outcome}</p>}
+
+		{
+			project.highlights?.length ? (
+				<>
+					<h2 style="font-size: 1.15rem; margin: 0 0 0.75rem;">Destaques</h2>
+					<ul style="margin: 0; padding-left: 1.2rem;">
+						{project.highlights.map((h) => (
+							<li style="margin-bottom: 0.35rem;">{h}</li>
+						))}
+					</ul>
+				</>
+			) : null
+		}
+
+		<h2 style="font-size: 1.15rem; margin: 1.75rem 0 0.75rem;">Tags</h2>
+		<div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+			{
+				project.tags.map((t) => (
+					<span
+						style="font-size: 0.85rem; padding: 0.25rem 0.55rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--border);"
+					>
+						{t}
+					</span>
+				))
+			}
+		</div>
+	</article>
+</BaseLayout>

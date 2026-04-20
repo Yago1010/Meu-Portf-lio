@@ -1,0 +1,74 @@
+---
+import { withBase } from '../../lib/paths';
+import type { Project } from '../../types/content';
+
+type Props = {
+	project: Project;
+};
+
+const { project } = Astro.props as Props;
+const imagePath = project.cover?.image
+	? `${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`
+	: null;
+---
+
+<a class="showcase-card card-hover-lift" href={withBase(`projetos/${project.slug}`)}>
+	<div class="media-wrap">
+		{
+			imagePath ? (
+				<img src={imagePath} alt={project.title} class="showcase-image" loading="lazy" width={640} height={360} />
+			) : (
+				<div class="showcase-media" style={`background: ${project.cover?.background ?? 'linear-gradient(135deg, #1b2433, #090f1e)'}`}></div>
+			)
+		}
+	</div>
+	<h3>{project.title}</h3>
+	<p>{project.category}</p>
+</a>
+
+<style>
+	.showcase-card {
+		display: block;
+		padding: 0.7rem;
+		border-radius: 12px;
+		background: rgba(7, 14, 25, 0.8);
+		border: 1px solid rgba(55, 104, 170, 0.35);
+		text-decoration: none;
+		color: inherit;
+	}
+	.media-wrap {
+		aspect-ratio: 16 / 10;
+		border-radius: 10px;
+		overflow: hidden;
+		border: 1px solid rgba(95, 132, 184, 0.5);
+		background: rgba(8, 20, 40, 0.85);
+	}
+	.showcase-media,
+	.showcase-image {
+		height: 100%;
+		width: 100%;
+		display: block;
+		object-fit: cover;
+	}
+	.showcase-image {
+		animation: slow-pan 24s ease-in-out infinite alternate;
+		transform-origin: center;
+	}
+	.showcase-card h3 {
+		margin: 0.7rem 0 0.25rem;
+		font-size: 0.98rem;
+	}
+	.showcase-card p {
+		margin: 0;
+		color: var(--muted);
+	}
+
+	@keyframes slow-pan {
+		0% {
+			transform: scale(1.02) translateX(0);
+		}
+		100% {
+			transform: scale(1.08) translateX(-1.2%);
+		}
+	}
+</style>

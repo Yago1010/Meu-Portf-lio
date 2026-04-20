@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "title": "Yago Ribeiro - Software Engineer Sênior",
+    "description": "Software Engineer com 9 anos de experiência em Web, Mobile e E-commerce. Especialista em arquitetura, otimização de sistemas e liderança técnica.",
+    "locale": "pt-BR"
+  },
+  "profile": {
+    "name": "Yago Ribeiro",
+    "headline": "Software Engineer Sênior",
+    "availability": "Disponível para consultoria técnica e projetos estratégicos",
+    "roleLabel": "Liderança técnica, arquitetura moderna e performance em escala"
+  },
+  "hero": {
+    "eyebrow": "Software Engineer - Desde 2016",
+    "title": "Construo produtos digitais de alto impacto com foco em performance, escala e resultado de negócio.",
+    "subtitle": "Atuo de ponta a ponta em Web, Mobile e E-commerce. Especialista em arquitetura de sistemas, modernização de legados e liderança de times para entrega com qualidade.",
+    "highlights": [
+      "9 anos em engenharia de software",
+      "5+ anos em aplicações mobile escaláveis",
+      "Consultoria em arquitetura, cloud e integrações complexas"
+    ],
+    "primaryCta": "Ver projetos",
+    "secondaryCta": "Falar comigo"
+  },
+  "about": {
+    "title": "Sobre",
+    "intro": "Sou engenheiro de software com 9 anos de experiência desenvolvendo aplicações de ponta a ponta para Web, Mobile e E-commerce.",
+    "description": "Hoje, como consultor técnico, ajudo empresas a resolver desafios arquiteturais complexos com microserviços, migração de legados para cloud (AWS) e integrações entre plataformas, ERPs e logística. Tenho mentalidade orientada a produto: tecnologia só é valiosa quando melhora eficiência operacional e gera crescimento sustentável.",
+    "stats": [
+      { "value": "9+", "label": "ANOS DE EXPERIÊNCIA" },
+      { "value": "5+", "label": "ANOS EM MOBILE" },
+      { "value": "30+", "label": "PROJETOS ENTREGUES" }
+    ]
+  },
+  "experience": {
+    "title": "Trajetória Profissional",
+    "items": [
+      {
+        "period": "Julho de 2025 - Presente",
+        "periodLabel": "Julho de 2025 - Presente",
+        "role": "Desenvolvedor Full Stack",
+        "company": "Forthlogic AI (com sede nos EUA)",
+        "description": "Atuação full stack em produtos orientados por IA.",
+        "responsibilities": [
+          "Desenvolvi e mantive APIs de backend em Node.js para fluxos de trabalho de chamadas, reservas e conversas orientadas por IA.",
+          "Criei e otimizei esquemas do MongoDB para conversas, usuários, compromissos e dados analíticos.",
+          "Desenvolvi painéis de controle frontend em Next.js com interface de usuário responsiva para gerenciar agentes de IA e integrações.",
+          "Criei fluxos de trabalho de automação no n8n para otimizar as operações dos agentes de IA e os pipelines de dados.",
+          "Colaborei com as equipes de produto e IA para lançar funcionalidades escaláveis utilizadas por clientes corporativos.",
+          "Melhorei desempenho, processamento de dados e confiabilidade da API em toda a pilha."
+        ],
+        "stack": ["Next.js", "Node.js", "AWS", "Docker", "Kubernetes", "GitHub Actions"]
+      },
+      {
+        "period": "Nov. 2024 - Abr. 2025",
+        "periodLabel": "Nov. 2024 - Abr. 2025",
+        "role": "Estágio em Desenvolvimento Frontend",
+        "company": "Alphabase Private Ltd.",
+        "description": "Atuação em produtos frontend focados em performance e UX.",
+        "responsibilities": [
+          "Desenvolvimento e manutenção de aplicações web ricas em funcionalidades utilizando Next.js e TypeScript.",
+          "Colaborei com desenvolvedores seniores para implementar componentes de interface do usuário de alto desempenho usando Tailwind CSS e Radix UI.",
+          "Integrei recursos baseados em IA e fluxos de trabalho automatizados para aumentar a produtividade do usuário.",
+          "Otimizei o desempenho da aplicação e garanti a compatibilidade entre navegadores."
+        ],
+        "stack": ["Flutter", "Java", "Kotlin", "Firebase", "GraphQL", "REST APIs"]
+      },
+      {
+        "period": "Outubro de 2023 - Março de 2024",
+        "periodLabel": "Outubro de 2023 - Março de 2024",
+        "role": "Desenvolvedor Frontend (Remoto)",
+        "company": "Juhuu GmbH",
+        "description": "Atuação remota em interface de produtos para soluções de micromobilidade.",
+        "responsibilities": [
+          "Trabalhei em interfaces de plataforma baseadas em IoT para soluções de micromobilidade.",
+          "Transformei designs complexos do Figma em componentes React responsivos e interativos.",
+          "Utilizei padrões modernos de gerenciamento de estado e busca de dados com React Query.",
+          "Contribuí para o desenvolvimento do JUHUU Marketplace e dos sites promocionais."
+        ],
+        "stack": ["Node.js", "React", "Java", "Python", ".NET Core"]
+      }
+    ]
+  },
+  "skills": {
+    "title": "Stack e Especialidades",
+    "groups": [
+      {
+        "title": "Arquitetura e Plataforma",
+        "items": ["Next.js", "Node.js", "Java", "Python", ".NET Core", "Microservices", "Clean Architecture"]
+      },
+      {
+        "title": "Mobile e Integrações",
+        "items": ["Flutter", "Android SDK", "Riverpod", "Bloc", "Provider", "GetX", "REST APIs", "GraphQL", "Firebase", "Google Maps", "Push Notifications"]
+      },
+      {
+        "title": "Realtime, Mídia e Pagamentos",
+        "items": ["WebSockets", "Pusher", "Agora", "FFmpeg", "Video Players", "Stripe", "In-App Purchases", "Apple Pay", "Google Pay", "Google AdMob"]
+      },
+      {
+        "title": "DevOps e Produtividade",
+        "items": ["AWS", "Docker", "Kubernetes", "GitHub Actions", "CI/CD", "Postman", "Android Studio", "VS Code", "Xcode", "Mentoria técnica"]
+      }
+    ]
+  },
+  "contact": {
+    "email": "contato@yagoribeiro.dev",
+    "location": "Brasil",
+    "linkedinLabel": "LinkedIn",
+    "linkedin": "https://www.linkedin.com/in/yago-ribeiro-932409342/",
+    "github": "https://github.com/Yago1010",
+    "instagram": "https://www.instagram.com/yago_ribeiro00/",
+    "whatsapp": "https://wa.me/5500000000000",
+    "resumeUrl": "#"
+  }
+}

@@ -1,0 +1,62 @@
+---
+import { withBase } from '../lib/paths';
+import type { Project } from '../types/content';
+
+type Props = { project: Project };
+
+const { project } = Astro.props;
+const detail = withBase(`projetos/${project.slug}`);
+---
+
+<article
+	class="project-card"
+	data-tags={project.tags.join(',')}
+	data-category={project.category}
+	style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; height: 100%;"
+>
+	{
+		project.cover?.image ? (
+		<img
+			src={`${import.meta.env.BASE_URL}${project.cover.image.replace(/^\//, '')}`}
+			alt=""
+			width={640}
+			height={360}
+			loading="lazy"
+			style="width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border);"
+		/>
+	) : (
+		<div
+			style={`height: 120px; background: ${project.cover?.background ?? 'linear-gradient(135deg, #333333, #181818)'}; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.2rem; font-weight: 800;`}
+		>
+			{project.cover?.logoText ?? project.tags[0] ?? 'Projeto'}
+		</div>
+	)
+	}
+	<div style="padding: 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem;">
+		<p style="margin: 0; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase;">
+			{project.category} · {project.year}
+		</p>
+		<h3 style="margin: 0; font-size: 1.05rem;">
+			<a href={detail} style="color: var(--text); text-decoration: none;">{project.title}</a>
+		</h3>
+		<p style="margin: 0; color: var(--muted); font-size: 0.92rem; flex: 1;">{project.summary}</p>
+		<div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+			{
+				project.tags.map((t) => (
+					<span
+						class="tag-pill"
+						data-tag={t}
+						style="font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border);"
+					>
+						{t}
+					</span>
+				))
+			}
+		</div>
+		<div style="display: flex; gap: 0.75rem; margin-top: 0.35rem; flex-wrap: wrap;">
+			<a href={detail}>Detalhes</a>
+			{project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">GitHub</a>}
+			{project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">Demo</a>}
+		</div>
+	</div>
+</article>
